@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: unzip -q BuracoNegro_Mod.zip
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -14,10 +15,10 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: current
-      - run: gradle build --no-daemon
+      - run: gradle build --no-daemon -p BuracoNegro_Mod
       - uses: actions/upload-artifact@v4
         with:
           name: buraconegro-jar
           path: |
-            build/libs/*.jar
-            !build/libs/*-sources.jar
+            BuracoNegro_Mod/build/libs/*.jar
+            !BuracoNegro_Mod/build/libs/*-sources.jar
